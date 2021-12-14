@@ -13,68 +13,71 @@ var fiveDayForecastTwo = document.querySelector("#five-day-forecast-two");
 var fiveDayForecastThree = document.querySelector("#five-day-forecast-three");
 var fiveDayForecastFour = document.querySelector("#five-day-forecast-four");
 var fiveDayForecastFive = document.querySelector("#five-day-forecast-five");
+var cityReferences = document.querySelector("#savedData");
 
+  var display5DayWeatherData = function(city) {
+    var apiUrl1 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=9cea4c2c630ad1c978d7cdfabc1cee75";
 
-var getWeatherUpdate = function(city) {
-    // format the OpenWeather api url
-    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=9cea4c2c630ad1c978d7cdfabc1cee75";
-  
-    // make a request to the url
-    fetch(apiUrl).then(function(response) {
-      response.json().then(function(data) {
-        displayWeatherData(data, city);
-      });
+    fetch(apiUrl1).then(function(response) {
+    response.json().then(function(data) {
+      displayWeatherData(data, city);
     });
+   });
   };
 
-  
   var formSubmitHandler = function(event) {
     event.preventDefault();
     var cityName = inputBoxEl.value.trim();
 
     if (cityName) {
-       getWeatherUpdate(cityName);
-       inputBoxEl.value = "";
+      display5DayWeatherData(cityName);
+      localStorage.setItem("City Search", cityName);
+      var data = localStorage.getItem(cityName);
+      var cityRef = document.createElement("a");
+      cityReferences.appendChild(cityRef);
+      cityRef.textContent = cityName;
+      inputBoxEl.value = "";
     } else {
         alert ("Please enter a valid City.");
     }
     // console.log(event);
   };
-
   searchBoxEl.addEventListener("submit", formSubmitHandler);
-
 
   var displayWeatherData = function(info, searchTerm) {
       console.log(info);
       console.log(searchTerm);
       weatherContainerEl.textContent = "";
-      citySearchTerm.textContent = searchTerm;
 
       // Current Weather Block
       var cityNameEl = document.createElement("h1");
-      cityNameEl.textContent = searchTerm;
+      cityNameEl.textContent = info.city.name;
       cityNameEl.style.textAlign = "center";
       weatherInfo.appendChild(cityNameEl);
 
       var currentDate = document.createElement("p")
-      currentDate.textContent= moment(info.dt.value).format("MMM D, YYYY");
+      currentDate.textContent= moment(info.list.dt).format("MMM D, YYYY");
       currentDate.style.textAlign = "center";
       weatherInfo.appendChild(currentDate);
 
       var temperatureEl = document.createElement("p");
-      temperatureEl.textContent = "Temperature: " + Math.round(info.main.temp) + " °F";
+      temperatureEl.textContent = "Temperature: " + Math.round(info.list[0].main.temp) + " °F";
       temperatureEl.className = "extra-info";
       weatherInfo.appendChild(temperatureEl);
-      
+  
+      var windSpeedEl = document.createElement("p");
+      windSpeedEl.textContent = "Wind Speed: " + info.list[0].wind.speed + " MPH";
+      windSpeedEl.className = "extra-info";
+      weatherInfo.appendChild(windSpeedEl);
+
       var humidityEl = document.createElement("p");
-      humidityEl.textContent = "Humidity: " + info.main.humidity + " %";
+      humidityEl.textContent = "Humidity: " + info.list[0].main.humidity + " %";
       humidityEl.className = "extra-info";
       weatherInfo.appendChild(humidityEl);
 
-      var windSpeedEl = document.createElement("p");
-      windSpeedEl.textContent = "Wind Speed: " + info.wind.speed + " MPH";
-      windSpeedEl.className = "extra-info";
-      weatherInfo.appendChild(windSpeedEl);
+      var lineBr = document.createElement("br");
+      weatherInfo.appendChild(lineBr);
+
 
       // Five Day Forecast Elements
       // Forecast Subtitle
@@ -86,111 +89,108 @@ var getWeatherUpdate = function(city) {
       // Day One Forcast
       var dayOneDate = document.createElement("li");
       fiveDayForecastOne.appendChild(dayOneDate);
-      dayOneDate.textContent= moment(info.dt.value).format("MMM D, YYYY");
+      dayOneDate.textContent= moment(info.list[5].dt_txt).format("MMM D, YYYY");
 
       var dayOneIcon = document.createElement("li");
       fiveDayForecastOne.appendChild(dayOneIcon);
 
       var dayOneTemp = document.createElement("li");
       fiveDayForecastOne.appendChild(dayOneTemp);
-      dayOneTemp.textContent = "Temperature: " + Math.round(info.main.temp) + " °F";
+      dayOneTemp.textContent = "Temperature: " + Math.round(info.list[5].main.temp) + " °F";
 
       var dayOneWind = document.createElement("li");
       fiveDayForecastOne.appendChild(dayOneWind);
-      dayOneWind.textContent = "Wind Speed: " + info.wind.speed + " MPH";
+      dayOneWind.textContent = "Wind Speed: " + info.list[5].wind.speed + " MPH";
 
       var dayOneHum = document.createElement("li");
       fiveDayForecastOne.appendChild(dayOneHum);
-      dayOneHum.textContent = "Humidity: " + info.main.humidity + " %";
+      dayOneHum.textContent = "Humidity: " + info.list[5].main.humidity + " %";
 
       // Day Two Forecast
-      var dayOneDate = document.createElement("li");
-      fiveDayForecastTwo.appendChild(dayOneDate);
-      dayOneDate.textContent= moment(info.dt.value).format("MMM D, YYYY");
+      var dayTwoDate = document.createElement("li");
+      fiveDayForecastTwo.appendChild(dayTwoDate);
+      dayTwoDate.textContent = moment(info.list[13].dt_txt).format("MMM D, YYYY");
 
-      var dayOneIcon = document.createElement("li");
-      fiveDayForecastTwo.appendChild(dayOneIcon);
+      var dayTwoIcon = document.createElement("li");
+      fiveDayForecastTwo.appendChild(dayTwoIcon);
 
-      var dayOneTemp = document.createElement("li");
-      fiveDayForecastTwo.appendChild(dayOneTemp);
-      dayOneTemp.textContent = "Temperature: " + Math.round(info.main.temp) + " °F";
+      var dayTwoTemp = document.createElement("li");
+      fiveDayForecastTwo.appendChild(dayTwoTemp);
+      dayTwoTemp.textContent = "Temperature: " + Math.round(info.list[13].main.temp) + " °F";
 
-      var dayOneWind = document.createElement("li");
-      fiveDayForecastTwo.appendChild(dayOneWind);
-      dayOneWind.textContent = "Wind Speed: " + info.wind.speed + " MPH";
+      var dayTwoWind = document.createElement("li");
+      fiveDayForecastTwo.appendChild(dayTwoWind);
+      dayTwoWind.textContent = "Wind Speed: " + info.list[13].wind.speed + " MPH";
 
-      var dayOneHum = document.createElement("li");
-      fiveDayForecastTwo.appendChild(dayOneHum);
-      dayOneHum.textContent = "Humidity: " + info.main.humidity + " %";
+      var dayTwoHum = document.createElement("li");
+      fiveDayForecastTwo.appendChild(dayTwoHum);
+      dayTwoHum.textContent = "Humidity: " + info.list[13].main.humidity + " %";
 
       // Day Three Forecast
-      var dayOneDate = document.createElement("li");
-      fiveDayForecastThree.appendChild(dayOneDate);
-      dayOneDate.textContent= moment(info.dt.value).format("MMM D, YYYY");
+      var dayThreeDate = document.createElement("li");
+      fiveDayForecastThree.appendChild(dayThreeDate);
+      dayThreeDate.textContent = moment(info.list[21].dt_txt).format("MMM D, YYYY");
 
-      var dayOneIcon = document.createElement("li");
-      fiveDayForecastThree.appendChild(dayOneIcon);
+      var dayThreeIcon = document.createElement("li");
+      fiveDayForecastTwo.appendChild(dayThreeIcon);
 
-      var dayOneTemp = document.createElement("li");
-      fiveDayForecastThree.appendChild(dayOneTemp);
-      dayOneTemp.textContent = "Temperature: " + Math.round(info.main.temp) + " °F";
+      var dayThreeTemp = document.createElement("li");
+      fiveDayForecastThree.appendChild(dayThreeTemp);
+      dayThreeTemp.textContent = "Temperature: " + Math.round(info.list[21].main.temp) + " °F";
 
-      var dayOneWind = document.createElement("li");
-      fiveDayForecastThree.appendChild(dayOneWind);
-      dayOneWind.textContent = "Wind Speed: " + info.wind.speed + " MPH";
+      var dayThreeWind = document.createElement("li");
+      fiveDayForecastThree.appendChild(dayThreeWind);
+      dayThreeWind.textContent = "Wind Speed: " + info.list[21].wind.speed + " MPH";
 
-      var dayOneHum = document.createElement("li");
-      fiveDayForecastThree.appendChild(dayOneHum);
-      dayOneHum.textContent = "Humidity: " + info.main.humidity + " %";
+      var dayThreeHum = document.createElement("li");
+      fiveDayForecastThree.appendChild(dayThreeHum);
+      dayThreeHum.textContent = "Humidity: " + info.list[21].main.humidity + " %";
 
       // Day Four Forecast
-      var dayOneDate = document.createElement("li");
-      fiveDayForecastFour.appendChild(dayOneDate);
-      dayOneDate.textContent= moment(info.dt.value).format("MMM D, YYYY");
+      var dayFourDate = document.createElement("li");
+      fiveDayForecastFour.appendChild(dayFourDate);
+      dayFourDate.textContent = moment(info.list[29].dt_txt).format("MMM D, YYYY");
 
-      var dayOneIcon = document.createElement("li");
-      fiveDayForecastFour.appendChild(dayOneIcon);
+      var dayFourIcon = document.createElement("li");
+      fiveDayForecastFour.appendChild(dayFourIcon);
 
-      var dayOneTemp = document.createElement("li");
-      fiveDayForecastFour.appendChild(dayOneTemp);
-      dayOneTemp.textContent = "Temperature: " + Math.round(info.main.temp) + " °F";
+      var dayFourTemp = document.createElement("li");
+      fiveDayForecastFour.appendChild(dayFourTemp);
+      dayFourTemp.textContent = "Temperature: " + Math.round(info.list[29].main.temp) + " °F";
 
-      var dayOneWind = document.createElement("li");
-      fiveDayForecastFour.appendChild(dayOneWind);
-      dayOneWind.textContent = "Wind Speed: " + info.wind.speed + " MPH";
+      var dayFourWind = document.createElement("li");
+      fiveDayForecastFour.appendChild(dayFourWind);
+      dayFourWind.textContent = "Wind Speed: " + info.list[29].wind.speed + " MPH";
 
-      var dayOneHum = document.createElement("li");
-      fiveDayForecastFour.appendChild(dayOneHum);
-      dayOneHum.textContent = "Humidity: " + info.main.humidity + " %";
+      var dayFourHum = document.createElement("li");
+      fiveDayForecastFour.appendChild(dayFourHum);
+      dayFourHum.textContent = "Humidity: " + info.list[29].main.humidity + " %";
 
       // Day Five Forecast
-      var dayOneDate = document.createElement("li");
-      fiveDayForecastFive.appendChild(dayOneDate);
-      dayOneDate.textContent= moment(info.dt.value).format("MMM D, YYYY");
+      var dayFiveDate = document.createElement("li");
+      fiveDayForecastFive.appendChild(dayFiveDate);
+      dayFiveDate.textContent = moment(info.list[37].dt_txt).format("MMM D, YYYY");
 
-      var dayOneIcon = document.createElement("li");
-      fiveDayForecastFive.appendChild(dayOneIcon);
+      var dayFiveIcon = document.createElement("li");
+      fiveDayForecastFive.appendChild(dayFiveIcon);
 
-      var dayOneTemp = document.createElement("li");
-      fiveDayForecastFive.appendChild(dayOneTemp);
-      dayOneTemp.textContent = "Temperature: " + Math.round(info.main.temp) + " °F";
+      var dayFiveTemp = document.createElement("li");
+      fiveDayForecastFive.appendChild(dayFiveTemp);
+      dayFiveTemp.textContent = "Temperature: " + Math.round(info.list[37].main.temp) + " °F";
 
-      var dayOneWind = document.createElement("li");
-      fiveDayForecastFive.appendChild(dayOneWind);
-      dayOneWind.textContent = "Wind Speed: " + info.wind.speed + " MPH";
+      var dayFiveWind = document.createElement("li");
+      fiveDayForecastFive.appendChild(dayFiveWind);
+      dayFiveWind.textContent = "Wind Speed: " + info.list[37].wind.speed + " MPH";
 
-      var dayOneHum = document.createElement("li");
-      fiveDayForecastFive.appendChild(dayOneHum);
-      dayOneHum.textContent = "Humidity: " + info.main.humidity + " %";
+      var dayFiveHum = document.createElement("li");
+      fiveDayForecastFive.appendChild(dayFiveHum);
+      dayFiveHum.textContent = "Humidity: " + info.list[37].main.humidity + " %";
 
   };
 
 
 
-  var displayMoreWeatherData = function() {
-    console.log("The function was called");
-  };
-  displayMoreWeatherData();
+
 
 
   

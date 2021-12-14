@@ -34,3 +34,7 @@ li {
     border: solid 2px black;
 }
 
+.cityInputArea {
+    display: flex;
+    justify-content: space-around;
+}
