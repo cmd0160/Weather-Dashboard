@@ -1,0 +1,16 @@
+header {
+    background-color: blue;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
+
+p {
+    text-align: center;
+    font-size: 10px;
+}
+
+#displayTitle {
+    display: flex;
+    justify-content: center;
+}
