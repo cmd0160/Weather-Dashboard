@@ -8,6 +8,11 @@ var inputBtnEl = document.querySelector("#citySearchBtn");
 var weatherContainerEl = document.querySelector("#weather-display-container");
 var citySearchTerm = document.querySelector("#city-search-term");
 var weatherInfo = document.querySelector("#weatherInfoBox");
+var fiveDayForecastOne = document.querySelector("#five-day-forecast-one");
+var fiveDayForecastTwo = document.querySelector("#five-day-forecast-two");
+var fiveDayForecastThree = document.querySelector("#five-day-forecast-three");
+var fiveDayForecastFour = document.querySelector("#five-day-forecast-four");
+var fiveDayForecastFive = document.querySelector("#five-day-forecast-five");
 
 
 var getWeatherUpdate = function(city) {
@@ -45,6 +50,7 @@ var getWeatherUpdate = function(city) {
       weatherContainerEl.textContent = "";
       citySearchTerm.textContent = searchTerm;
 
+      // Current Weather Block
       var cityNameEl = document.createElement("h1");
       cityNameEl.textContent = searchTerm;
       cityNameEl.style.textAlign = "center";
@@ -69,4 +75,117 @@ var getWeatherUpdate = function(city) {
       windSpeedEl.textContent = "Wind Speed: " + info.wind.speed + " MPH";
       windSpeedEl.className = "extra-info";
       weatherInfo.appendChild(windSpeedEl);
+
+      // Five Day Forecast Elements
+      // Forecast Subtitle
+      var fiveDayForecastTitle = document.createElement("h1")
+      weatherInfo.appendChild(fiveDayForecastTitle);
+      fiveDayForecastTitle.className = "subtitle";
+      fiveDayForecastTitle.textContent = "5 Day Forecast:"
+
+      // Day One Forcast
+      var dayOneDate = document.createElement("li");
+      fiveDayForecastOne.appendChild(dayOneDate);
+      dayOneDate.textContent= moment(info.dt.value).format("MMM D, YYYY");
+
+      var dayOneIcon = document.createElement("li");
+      fiveDayForecastOne.appendChild(dayOneIcon);
+
+      var dayOneTemp = document.createElement("li");
+      fiveDayForecastOne.appendChild(dayOneTemp);
+      dayOneTemp.textContent = "Temperature: " + Math.round(info.main.temp) + " °F";
+
+      var dayOneWind = document.createElement("li");
+      fiveDayForecastOne.appendChild(dayOneWind);
+      dayOneWind.textContent = "Wind Speed: " + info.wind.speed + " MPH";
+
+      var dayOneHum = document.createElement("li");
+      fiveDayForecastOne.appendChild(dayOneHum);
+      dayOneHum.textContent = "Humidity: " + info.main.humidity + " %";
+
+      // Day Two Forecast
+      var dayOneDate = document.createElement("li");
+      fiveDayForecastTwo.appendChild(dayOneDate);
+      dayOneDate.textContent= moment(info.dt.value).format("MMM D, YYYY");
+
+      var dayOneIcon = document.createElement("li");
+      fiveDayForecastTwo.appendChild(dayOneIcon);
+
+      var dayOneTemp = document.createElement("li");
+      fiveDayForecastTwo.appendChild(dayOneTemp);
+      dayOneTemp.textContent = "Temperature: " + Math.round(info.main.temp) + " °F";
+
+      var dayOneWind = document.createElement("li");
+      fiveDayForecastTwo.appendChild(dayOneWind);
+      dayOneWind.textContent = "Wind Speed: " + info.wind.speed + " MPH";
+
+      var dayOneHum = document.createElement("li");
+      fiveDayForecastTwo.appendChild(dayOneHum);
+      dayOneHum.textContent = "Humidity: " + info.main.humidity + " %";
+
+      // Day Three Forecast
+      var dayOneDate = document.createElement("li");
+      fiveDayForecastThree.appendChild(dayOneDate);
+      dayOneDate.textContent= moment(info.dt.value).format("MMM D, YYYY");
+
+      var dayOneIcon = document.createElement("li");
+      fiveDayForecastThree.appendChild(dayOneIcon);
+
+      var dayOneTemp = document.createElement("li");
+      fiveDayForecastThree.appendChild(dayOneTemp);
+      dayOneTemp.textContent = "Temperature: " + Math.round(info.main.temp) + " °F";
+
+      var dayOneWind = document.createElement("li");
+      fiveDayForecastThree.appendChild(dayOneWind);
+      dayOneWind.textContent = "Wind Speed: " + info.wind.speed + " MPH";
+
+      var dayOneHum = document.createElement("li");
+      fiveDayForecastThree.appendChild(dayOneHum);
+      dayOneHum.textContent = "Humidity: " + info.main.humidity + " %";
+
+      // Day Four Forecast
+      var dayOneDate = document.createElement("li");
+      fiveDayForecastFour.appendChild(dayOneDate);
+      dayOneDate.textContent= moment(info.dt.value).format("MMM D, YYYY");
+
+      var dayOneIcon = document.createElement("li");
+      fiveDayForecastFour.appendChild(dayOneIcon);
+
+      var dayOneTemp = document.createElement("li");
+      fiveDayForecastFour.appendChild(dayOneTemp);
+      dayOneTemp.textContent = "Temperature: " + Math.round(info.main.temp) + " °F";
+
+      var dayOneWind = document.createElement("li");
+      fiveDayForecastFour.appendChild(dayOneWind);
+      dayOneWind.textContent = "Wind Speed: " + info.wind.speed + " MPH";
+
+      var dayOneHum = document.createElement("li");
+      fiveDayForecastFour.appendChild(dayOneHum);
+      dayOneHum.textContent = "Humidity: " + info.main.humidity + " %";
+
+      // Day Five Forecast
+      var dayOneDate = document.createElement("li");
+      fiveDayForecastFive.appendChild(dayOneDate);
+      dayOneDate.textContent= moment(info.dt.value).format("MMM D, YYYY");
+
+      var dayOneIcon = document.createElement("li");
+      fiveDayForecastFive.appendChild(dayOneIcon);
+
+      var dayOneTemp = document.createElement("li");
+      fiveDayForecastFive.appendChild(dayOneTemp);
+      dayOneTemp.textContent = "Temperature: " + Math.round(info.main.temp) + " °F";
+
+      var dayOneWind = document.createElement("li");
+      fiveDayForecastFive.appendChild(dayOneWind);
+      dayOneWind.textContent = "Wind Speed: " + info.wind.speed + " MPH";
+
+      var dayOneHum = document.createElement("li");
+      fiveDayForecastFive.appendChild(dayOneHum);
+      dayOneHum.textContent = "Humidity: " + info.main.humidity + " %";
+
+
   };
+
+
+
+  

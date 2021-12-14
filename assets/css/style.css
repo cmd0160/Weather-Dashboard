@@ -14,3 +14,23 @@ p {
     display: flex;
     justify-content: center;
 }
+
+.subtitle {
+    display: flex;
+    justify-content: center;
+}
+
+li {
+    list-style: none;
+}
+
+.fiveDayContainers {
+    display: flex;
+    width: auto;
+    justify-content: space-around;
+}
+
+.weatherDiv {
+    border: solid 2px black;
+}
+
