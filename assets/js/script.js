@@ -183,9 +183,14 @@ var getWeatherUpdate = function(city) {
       fiveDayForecastFive.appendChild(dayOneHum);
       dayOneHum.textContent = "Humidity: " + info.main.humidity + " %";
 
-
   };
 
+
+
+  var displayMoreWeatherData = function() {
+    console.log("The function was called");
+  };
+  displayMoreWeatherData();
 
 
   
