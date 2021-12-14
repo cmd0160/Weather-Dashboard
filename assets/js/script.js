@@ -1,5 +1,6 @@
-
-
+var searchBoxEl = document.querySelector("#citySearchBox");
+var inputBoxEl = document.querySelector("#citySearchInput");
+var inputBtnEl = document.querySelector("#citySearchBtn");
 
 var getWeatherUpdate = function(city) {
     // format the OpenWeather api url
@@ -12,4 +13,18 @@ var getWeatherUpdate = function(city) {
       });
     });
   };
-  getWeatherUpdate("Dallas");
+  
+  var formSubmitHandler = function(event) {
+    event.preventDefault();
+    var cityName = inputBoxEl.value.trim();
+
+    if (cityName) {
+       getWeatherUpdate(cityName);
+       inputBoxEl.value = "";
+    } else {
+        alert ("Please enter a valid City.");
+    }
+    console.log(event);
+  };
+
+  searchBoxEl.addEventListener("submit", formSubmitHandler);
