@@ -7,10 +7,10 @@ header {
 
 p {
     text-align: center;
-    font-size: 10px;
+    font-size: 20px;
 }
 
-#displayTitle {
+.cityWeatherDisplay {
     display: flex;
     justify-content: center;
 }
