@@ -4,62 +4,143 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css"/>
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+
+    <header class="header">Weather Dashboard</header>
+
+    <div class="full-container">
+
+        <form id="citySearchBox">
+            <div class="citySearchContainer form" id="citySearchBox">
+
+              <div>
+                <h3>Search for a City:</h3>
+              </div>
+
+              <div>
+                <input class="cityText" id="citySearchInput" type="text" placeholder="Search for a city"/>
+              </div>
+
+              <div>
+                <button id="citySearchBtn" class="cityBtn submit">Search</button>
+              </div>    
+
+            </div>
+        </form>
+            
+            <div class="currentWeatherDisplayContainer">
+                <div id="weatherInfoBox" class="list-group"><span id="city-search-term"></span></div>
+                <div>Icon</div>
+            </div>
+
+
+
+            <div class="citySearchHistoryContainer">
+                <h3>Search History</h3>
+                <div id="savedData"></div>
+            </div>        
+
+            <div class="fiveDayForecastContainer"">
+
+                <div class="dayOneContainer dayOne">
+                    <ul id="five-day-forecast-one"></ul>
+                </div>
+
+                <div class="dayTwoContainer dayTwo">
+                    <ul id="five-day-forecast-two"></ul>
+                </div>
+
+                <div class="dayThreeContainer dayThree">
+                    <ul id="five-day-forecast-three"></ul>
+                </div>
+
+                <div class="dayFourContainer dayFour">
+                    <ul id="five-day-forecast-four"></ul>
+                </div>
+
+                <div class="dayFiveContainer dayFive">
+                    <ul id="five-day-forecast-five"></ul>
+                </div>
+
+            </div>
+            
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+    <script src="./assets/js/script.js"></script>
+
+</body>
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css"/>
     <title>Weather Dashboard</title>
     
 </head>
+
 <body>
+
     <header>Weather Dashboard</header>
-    <p class="extra-info">Powered by OpenWeather One Call API</p>
 
-  <section class="cityInputArea">
-    <form class="form" id="citySearchBox">
-        <h2>Search by City Name</h2>
-        <input type="text" id="citySearchInput" placeholder="Search for a City"/>
-        <button type="submit" class="submit">Submit</button>
-    </form>
+        <form class="form" id="citySearchBox">
+            <h1>Search for a City</h1>
+                <input type="text" id="citySearchInput" placeholder="Search for a City"/>
+                    <button type="submit" class="submit">Submit</button>
+        </form>
     
-    <div>
-        <h2>Search History</h2>
-        <div id="savedData"></div>
-    </div>
-
-</section>  
+        <div>
+            <h2>Search History</h2>
+            <div id="savedData"></div>
+        </div>
 
 
+        <div class="cityWeatherDisplay">
+            <h1>Showing Current Weather for: <span id="city-search-term"></span></h1>
+            <div id="weather-display-container" class="list-group"></div>
+        </div>
 
-    <div class="cityWeatherDisplay">
-        <h1>Showing Current Weather for: <span id="city-search-term"></span></h1>
-        <div id="weather-display-container" class="list-group"></div>
-    </div>
-
-    <div id="weatherInfoBox"></div>
+        <div id="weatherInfoBox"></div>
 
     <section class="fiveDayContainers">
-      <div class="dayOne">
-        <ul id="five-day-forecast-one"></ul>
-      </div>
 
-      <div class="dayTwo">
-        <ul id="five-day-forecast-two"></ul>
-      </div>
+        <div class="dayOne">
+            <ul id="five-day-forecast-one"></ul>
+        </div>
 
-      <div class="dayThree">
-        <ul id="five-day-forecast-three"></ul>
-      </div>
+        <div class="dayTwo">
+            <ul id="five-day-forecast-two"></ul>    
+        </div>
 
-      <div class="dayFour">
-        <ul id="five-day-forecast-four"></ul>
-      </div>
+        <div class="dayThree">
+            <ul id="five-day-forecast-three"></ul>
+        </div>
 
-      <div class="dayFive">
-        <ul id="five-day-forecast-five"></ul>
-      </div>
+        <div class="dayFour">
+            <ul id="five-day-forecast-four"></ul>
+        </div>
+
+        <div class="dayFive">
+            <ul id="five-day-forecast-five"></ul>
+        </div>
 
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
     <script src="./assets/js/script.js"></script>
+
 </body>
-</html>
+</html> -->

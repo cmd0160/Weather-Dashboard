@@ -1,8 +1,77 @@
+* {
+    background-color: lightgray;
+    margin: 0;
+}
+
 header {
     background-color: blue;
     color: white;
     text-align: center;
-    font-size: 30px;
+    font-size: 40px;
+    height: auto;
+    padding: .2em;
+    margin-bottom: 10px;
+}
+
+.full-container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 1em;
+}
+
+/* Individual Sub-Container stylings */
+.citySearchContainer {
+    display: grid;  
+    justify-self: center;
+}
+
+.currentWeatherDisplayContainer {
+border: solid 1px black;
+display: grid;  
+grid-template-columns: 1fr 2fr ; 
+grid-gap: 1em;
+grid-auto-rows: 100px;
+padding: 1em;
+
+}
+
+.currentWeatherDisplayContainer div {
+    background-color: lightgreen;
+}
+
+.citySearchHistoryContainer {
+    justify-self: center;
+
+}
+
+.fiveDayForecastContainer {
+    display: grid;   
+    grid-template-columns:repeat(5, 1fr);
+    grid-gap: 1em;
+    grid-auto-rows: 200px;
+    padding: 1em;
+}
+
+.fiveDayForecastContainer div {
+    background-color: rgb(63, 64, 75);
+
+}
+
+
+
+
+
+
+
+
+/* header {
+    margin: auto;
+    height: 65px;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    text-align: center;
+    font-size: 60px;
 }
 
 p {
@@ -22,9 +91,11 @@ p {
 
 li {
     list-style: none;
+    font-size: 15px;
 }
 
 .fiveDayContainers {
+    width: 800px;
     display: flex;
     width: auto;
     justify-content: space-around;
@@ -38,3 +109,8 @@ li {
     display: flex;
     justify-content: space-around;
 }
+
+a {
+    display: flex;
+    font-size: 20px;
+} */
